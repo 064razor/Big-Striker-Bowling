@@ -1,0 +1,13 @@
+{
+  "name": "big-striker-bowling-online",
+  "version": "1.0.0",
+  "description": "Big Striker Bowling with phase 1-6 online multiplayer rooms.",
+  "main": "server/server.js",
+  "scripts": {
+    "start": "node server/server.js"
+  },
+  "dependencies": {
+    "express": "^4.19.2",
+    "socket.io": "^4.7.5"
+  }
+}

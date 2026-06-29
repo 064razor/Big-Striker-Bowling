@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Big Striker Bowling</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+<div id="mainMenu">
+  <div class="menu-card">
+    <h2 class="menu-title">Big Striker Bowling</h2>
+    <p class="menu-subtitle">Choose your mode and lock in your colors</p>
+
+    <div class="menu-actions">
+      <button type="button" id="singleModeButton" class="mode-button selected">Single Player</button>
+      <button type="button" id="multiModeButton" class="mode-button">Local Multiplayer</button>
+      <button type="button" id="onlineModeButton" class="mode-button">Online Multiplayer</button>
+    </div>
+
+    <div id="playerCountRow" class="player-count-row" style="display:none;">
+      <span class="color-label">Players</span>
+      <button type="button" class="menu-small-button" data-count="2">2</button>
+      <button type="button" class="menu-small-button" data-count="3">3</button>
+      <button type="button" class="menu-small-button" data-count="4">4</button>
+    </div>
+
+    <div id="playerSetupGrid" class="player-setup-grid"></div>
+
+    <div id="onlinePanel" class="online-panel" style="display:none;">
+      <div class="online-profile-row">
+        <label>
+          <span>Your Name</span>
+          <input id="onlineNameInput" class="online-name-input" maxlength="18" placeholder="Player 1">
+        </label>
+      </div>
+      <div class="online-row">
+        <button type="button" id="createRoomButton" class="menu-small-button">Create Room</button>
+        <input id="roomCodeInput" class="room-code-input" maxlength="6" placeholder="ROOM CODE">
+        <button type="button" id="copyRoomButton" class="menu-small-button" disabled>Copy</button>
+        <button type="button" id="joinRoomButton" class="menu-small-button">Join Room</button>
+      </div>
+      <div id="onlineStatus" class="online-status">Create or join a room.</div>
+      <div id="onlineSlots" class="online-slots"></div>
+      <button type="button" id="readyOnlineButton" class="menu-small-button" disabled>Ready: No</button>
+      <button type="button" id="startOnlineButton" class="menu-start-button" disabled>Start Online Game</button>
+      <div id="onlineChat" class="online-chat" style="display:none;">
+        <div class="chat-title">Lobby Chat</div>
+        <div id="chatMessages" class="chat-messages"></div>
+        <div class="chat-input-row">
+          <input id="chatInput" class="chat-input" maxlength="100" placeholder="Say something...">
+          <button type="button" id="sendChatButton" class="menu-small-button">Send</button>
+        </div>
+      </div>
+    </div>
+
+    <button type="button" id="startGameButton" class="menu-start-button">Start Game</button>
+  </div>
+</div>
+
+<div id="gameShell" class="menu-locked">
+
+<div class="marquee-wrap" aria-label="Big Striker Bowling">
+  <div class="title-burst">
+    <span class="bolt bolt-left">⚡</span>
+    <span class="star star-left">★</span>
+    <h1>
+      <span class="title-big">Big Striker</span>
+      <span class="title-bowling">Bowling</span>
+    </h1>
+    <span class="star star-right">★</span>
+    <span class="bolt bolt-right">⚡</span>
+  </div>
+</div>
+
+<div id="turnBanner">Player 1</div>
+
+<div id="info" class="score-rack">
+  <div class="score-card frame-card">
+    <span class="score-icon">★</span>
+    <span class="score-label">Frame</span>
+    <strong><span id="frameText">1</span> <em>/ 10</em></strong>
+  </div>
+  <div class="score-card roll-card">
+    <span class="score-icon">●</span>
+    <span class="score-label">Roll</span>
+    <strong><span id="rollText">1</span></strong>
+  </div>
+  <div class="score-card score-card-main">
+    <span class="score-icon">♛</span>
+    <span class="score-label">Score</span>
+    <strong><span id="scoreText">0</span></strong>
+  </div>
+</div>
+
+<canvas id="game" width="500" height="760"></canvas>
+
+<div id="messageText">Pick your spot behind the red line.</div>
+
+<br>
+<button onclick="resetGame()">Reset Game</button>
+<button onclick="requestOnlinePlayAgain()" id="playAgainButton" style="display:none;">Play Again</button>
+<button onclick="exitToMenu()">Exit to Menu</button>
+<button onclick="toggleSound()" id="soundButton">Sound: On</button>
+
+<div id="ballColorPanel">
+  <span class="color-label">Ball Color</span>
+  <div id="ballColorChoices"></div>
+</div>
+
+<p>Tap/click anywhere behind the red foul line, drag to aim, then release. Avoid the gutters.</p>
+</div>
+
+<script src="/socket.io/socket.io.js"></script>
+<script src="/js/game.js"></script>
+
+</body>
+</html>
